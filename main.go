@@ -52,7 +52,7 @@ Usage: cleanpath [OPTIONS]
 Options:
 	-h,		Shows help page.
 	-g,		Shows your current PATH.
-	-f,		Prints the amount of duplicates found in your path.
+	-s,		Prints the amount of duplicates found in your path.
 	-c,		Cleans path of duplicates.
 	-p,		Prints what would be the result of the cleaning, but doesn't change path.
 	`)
