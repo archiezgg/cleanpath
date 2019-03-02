@@ -9,9 +9,11 @@ import (
 
 var hFlag bool
 var gFlag bool
-var fFlag bool
+var sFlag bool
 var pFlag bool
 var path = os.Getenv("PATH")
+var uniq []string
+var duplicates []string
 
 func main() {
 	parseFlags()
@@ -23,8 +25,8 @@ func main() {
 		printCurrentPath()
 		return
 	}
-	if fFlag {
-		fmt.Printf("You have %d duplicates in your path.\n", getDuplicateNumber())
+	if sFlag {
+		printStatus()
 		return
 	}
 	if pFlag {
@@ -36,7 +38,7 @@ func main() {
 func parseFlags() {
 	flag.BoolVar(&hFlag, "h", false, "Prints the help page.")
 	flag.BoolVar(&gFlag, "g", false, "Shows your current PATH.")
-	flag.BoolVar(&fFlag, "f", false, "Prints the amount of duplicates found in your path.")
+	flag.BoolVar(&sFlag, "s", false, "Prints status about the number of duplicates and the duplicates itself.")
 	flag.BoolVar(&pFlag, "p", false, "Print what would be the result of the cleaning, but doesn't change path.")
 	flag.Parse()
 }
@@ -77,18 +79,22 @@ func ifContains(slice []string, word string) bool {
 	return false
 }
 
-func getDuplicateNumber() int {
+func splitUniqAndDuplicates() {
 	s := getSplitPath()
-	var tmp []string
-	var duplicates []string
-
 	for _, v := range s {
-		if ifContains(tmp, v) {
+		if ifContains(uniq, v) {
 			duplicates = append(duplicates, v)
 		} else {
-			tmp = append(tmp, v)
+			uniq = append(uniq, v)
 		}
 	}
+}
 
+func getDuplicateNumber() int {
+	splitUniqAndDuplicates()
 	return len(duplicates)
+}
+
+func printStatus() {
+	fmt.Printf("You have %d number of duplicates in your path, which are the followings:\n%v\n", getDuplicateNumber(), duplicates)
 }
