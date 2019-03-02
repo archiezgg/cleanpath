@@ -17,6 +17,7 @@ var duplicates []string
 
 func main() {
 	parseFlags()
+	splitUniqAndDuplicates()
 	if hFlag {
 		welcome()
 		return
@@ -91,10 +92,16 @@ func splitUniqAndDuplicates() {
 }
 
 func getDuplicateNumber() int {
-	splitUniqAndDuplicates()
 	return len(duplicates)
 }
 
 func printStatus() {
-	fmt.Printf("You have %d number of duplicates in your path, which are the followings:\n%v\n", getDuplicateNumber(), duplicates)
+	if getDuplicateNumber() < 1 {
+		fmt.Println("You don't have any duplicates!")
+	} else {
+		fmt.Printf("You have %d number of duplicates in your path, which are the followings:\n", getDuplicateNumber())
+		for _, v := range duplicates {
+			fmt.Println(v)
+		}
+	}
 }
