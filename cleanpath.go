@@ -10,6 +10,7 @@ import (
 var hFlag bool
 var gFlag bool
 var sFlag bool
+var cFlag bool
 var pFlag bool
 var path = os.Getenv("PATH")
 var uniq []string
@@ -30,6 +31,10 @@ func main() {
 		printStatus()
 		return
 	}
+	if cFlag {
+		cleanPath()
+		return
+	}
 	if pFlag {
 		printNewPath()
 		return
@@ -41,6 +46,7 @@ func parseFlags() {
 	flag.BoolVar(&hFlag, "h", false, "Prints the help page.")
 	flag.BoolVar(&gFlag, "g", false, "Shows your current PATH.")
 	flag.BoolVar(&sFlag, "s", false, "Prints status about the number of duplicates and the duplicates itself.")
+	flag.BoolVar(&cFlag, "c", false, "Clean the path of duplicates and show the result.")
 	flag.BoolVar(&pFlag, "p", false, "Print what would be the result of the cleaning, but doesn't change path.")
 	flag.Parse()
 }
@@ -60,7 +66,7 @@ Options:
 }
 
 func printCurrentPath() {
-	fmt.Printf("Your current path is:\n %s\n", path)
+	fmt.Printf("Your current path is:\n%s\n", path)
 }
 
 func getSplitPath() []string {
@@ -122,4 +128,13 @@ func createNewPath() string {
 func printNewPath() {
 	newPath := createNewPath()
 	fmt.Printf("After cleaning, your path would look like this:\n%s\n", newPath)
+}
+
+func cleanPath() {
+	newPath := createNewPath()
+	err := os.Setenv("PATH", newPath)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("The PATH variable has been rid of duplicates. Your PATH is now:\n%s\n", os.Getenv("PATH"))
 }
