@@ -86,6 +86,8 @@ func ifContains(slice []string, word string) bool {
 }
 
 func splitUniqAndDuplicates() {
+	duplicates = nil
+	uniq = nil
 	s := getSplitPath()
 	for _, v := range s {
 		if ifContains(uniq, v) {
