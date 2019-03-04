@@ -31,6 +31,7 @@ func main() {
 		return
 	}
 	if pFlag {
+		printNewPath()
 		return
 	}
 	welcome()
@@ -108,8 +109,17 @@ func printStatus() {
 
 func createNewPath() string {
 	newPath := ""
-	for _, p := range uniq {
-		newPath += p + ":"
+	for k, p := range uniq {
+		if k == len(uniq)-1 {
+			newPath += p
+		} else {
+			newPath += p + ":"
+		}
 	}
 	return newPath
+}
+
+func printNewPath() {
+	newPath := createNewPath()
+	fmt.Printf("After cleaning, your path would look like this:\n%s\n", newPath)
 }
