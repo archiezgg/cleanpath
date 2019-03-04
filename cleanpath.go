@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"sort"
 	"strings"
 )
 
@@ -96,6 +97,8 @@ func splitUniqAndDuplicates() {
 			uniq = append(uniq, v)
 		}
 	}
+	sort.Strings(duplicates)
+	sort.Strings(uniq)
 }
 
 func getDuplicateNumber() int {
