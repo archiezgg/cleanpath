@@ -52,7 +52,7 @@ Usage: cleanpath [OPTIONS]
 Options:
 	-h,		Shows help page.
 	-g,		Shows your current PATH.
-	-s,		Prints the amount of duplicates found in your path.
+	-s,		Prints status about the number of duplicates and the duplicates itself.
 	-c,		Cleans path of duplicates.
 	-p,		Prints what would be the result of the cleaning, but doesn't change path.
 	`)
@@ -103,5 +103,12 @@ func printStatus() {
 		for _, v := range duplicates {
 			fmt.Println(v)
 		}
+	}
+}
+
+func createNewPath() string {
+	newPath := ""
+	for _, p := range uniq {
+		newPath += p + ":"
 	}
 }
