@@ -17,7 +17,6 @@ var duplicates []string
 
 func main() {
 	parseFlags()
-	splitUniqAndDuplicates()
 	if hFlag {
 		welcome()
 		return
@@ -45,7 +44,7 @@ func parseFlags() {
 	flag.BoolVar(&hFlag, "h", false, "Prints the help page.")
 	flag.BoolVar(&gFlag, "g", false, "Shows your current PATH.")
 	flag.BoolVar(&sFlag, "s", false, "Prints status about the number of duplicates and the duplicates itself.")
-	flag.BoolVar(&cFlag, "c", false, "Clean the path of duplicates and show the result.")
+	flag.BoolVar(&cFlag, "c", false, "Clean the path of duplicates and shows the result.")
 	flag.BoolVar(&pFlag, "p", false, "Print what would be the result of the cleaning, but doesn't change path.")
 	flag.Parse()
 }
@@ -98,10 +97,12 @@ func splitUniqAndDuplicates() {
 }
 
 func getDuplicateNumber() int {
+	splitUniqAndDuplicates()
 	return len(duplicates)
 }
 
 func printStatus() {
+	splitUniqAndDuplicates()
 	if getDuplicateNumber() < 1 {
 		fmt.Println("You don't have any duplicates!")
 	} else {
@@ -113,6 +114,7 @@ func printStatus() {
 }
 
 func createNewPath() string {
+	splitUniqAndDuplicates()
 	newPath := ""
 	for k, p := range uniq {
 		if k == len(uniq)-1 {
