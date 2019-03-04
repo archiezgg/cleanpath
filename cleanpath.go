@@ -98,7 +98,6 @@ func splitUniqAndDuplicates() {
 		}
 	}
 	sort.Strings(duplicates)
-	sort.Strings(uniq)
 }
 
 func getDuplicateNumber() int {
