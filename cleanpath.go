@@ -12,7 +12,6 @@ var gFlag bool
 var sFlag bool
 var cFlag bool
 var pFlag bool
-var path = os.Getenv("PATH")
 var uniq []string
 var duplicates []string
 
@@ -66,7 +65,7 @@ Options:
 }
 
 func printCurrentPath() {
-	fmt.Printf("Your current path is:\n%s\n", path)
+	fmt.Printf("Your current path is:\n%s\n", os.Getenv("PATH"))
 }
 
 func getSplitPath() []string {
@@ -74,7 +73,7 @@ func getSplitPath() []string {
 		return r == rune(':')
 	}
 
-	s := strings.FieldsFunc(path, f)
+	s := strings.FieldsFunc(os.Getenv("PATH"), f)
 	return s
 }
 
