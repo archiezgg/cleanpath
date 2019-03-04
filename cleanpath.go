@@ -111,4 +111,5 @@ func createNewPath() string {
 	for _, p := range uniq {
 		newPath += p + ":"
 	}
+	return newPath
 }
