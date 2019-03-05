@@ -104,7 +104,7 @@ func printStatus() {
 	if getDuplicateNumber() < 1 {
 		fmt.Println("You don't have any duplicates!")
 	} else {
-		fmt.Printf("You have %d number of duplicates in your path, which are the followings:\n", getDuplicateNumber())
+		fmt.Printf("You have %d number of duplicates in your path, which are the followings:\n\n", getDuplicateNumber())
 		for _, v := range duplicates {
 			fmt.Println(v)
 		}
@@ -129,6 +129,6 @@ func printCleanPath() {
 		fmt.Println("Your PATH is perfect as it is.")
 	} else {
 		newPath := createNewPath()
-		fmt.Printf("Without duplicates, your path would look like this:\n%s\n", newPath)
+		fmt.Printf("Without duplicates, your path would look like this:\n\n%s\n", newPath)
 	}
 }
