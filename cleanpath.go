@@ -125,10 +125,6 @@ func createNewPath() string {
 }
 
 func printCleanPath() {
-	if getDuplicateNumber() < 1 {
-		fmt.Println("Your PATH is perfect as it is.")
-	} else {
-		newPath := createNewPath()
-		fmt.Printf("Without duplicates, your path would look like this:\n\n%s\n", newPath)
-	}
+	newPath := createNewPath()
+	fmt.Println(newPath)
 }
