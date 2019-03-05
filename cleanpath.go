@@ -47,7 +47,7 @@ func parseFlags() {
 
 func welcome() {
 	fmt.Println(`
-Welcome to cleanpath, a lightweight to show your duplicates in your PATH variable!
+Welcome to cleanpath, a lightweight Go CLI application to show your duplicates in your PATH variable!
 	
 Usage: cleanpath [OPTIONS]
 Options:
