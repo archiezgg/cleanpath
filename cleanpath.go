@@ -30,12 +30,8 @@ func main() {
 		printStatus()
 		return
 	}
-	if cFlag {
-		cleanPath()
-		return
-	}
 	if pFlag {
-		printNewPath()
+		printCleanPath()
 		return
 	}
 	welcome()
@@ -45,22 +41,20 @@ func parseFlags() {
 	flag.BoolVar(&hFlag, "h", false, "Prints the help page.")
 	flag.BoolVar(&gFlag, "g", false, "Shows your current PATH.")
 	flag.BoolVar(&sFlag, "s", false, "Prints status about the number of duplicates and the duplicates itself.")
-	flag.BoolVar(&cFlag, "c", false, "Clean the path of duplicates and shows the result.")
 	flag.BoolVar(&pFlag, "p", false, "Print what would be the result of the cleaning, but doesn't change path.")
 	flag.Parse()
 }
 
 func welcome() {
 	fmt.Println(`
-Welcome to cleanpath, a lightweight Go CLI app to clean your path from duplicates!
+Welcome to cleanpath, a lightweight to show your duplicates in your PATH variable!
 	
 Usage: cleanpath [OPTIONS]
 Options:
 	-h,		Shows help page.
 	-g,		Shows your current PATH.
 	-s,		Prints status about the number of duplicates and the duplicates itself.
-	-c,		Cleans path of duplicates.
-	-p,		Prints what would be the result of the cleaning, but doesn't change path.
+	-p,		Prints what would your clean path look like.
 	`)
 }
 
@@ -130,16 +124,11 @@ func createNewPath() string {
 	return newPath
 }
 
-func printNewPath() {
-	newPath := createNewPath()
-	fmt.Printf("After cleaning, your path would look like this:\n%s\n", newPath)
-}
-
-func cleanPath() {
-	newPath := createNewPath()
-	err := os.Setenv("PATH", newPath)
-	if err != nil {
-		panic(err)
+func printCleanPath() {
+	if getDuplicateNumber() < 1 {
+		fmt.Println("Your PATH is perfect as it is.")
+	} else {
+		newPath := createNewPath()
+		fmt.Printf("Without duplicates, your path would look like this:\n%s\n", newPath)
 	}
-	fmt.Printf("The PATH variable has been rid of duplicates. Your PATH is now:\n%s\n", os.Getenv("PATH"))
 }
