@@ -10,12 +10,7 @@ var uniq []string
 var duplicates []string
 
 func getSplitPath() []string {
-	f := func(r rune) bool {
-		return r == rune(':')
-	}
-
-	s := strings.FieldsFunc(os.Getenv("PATH"), f)
-	return s
+	return strings.Split(os.Getenv("PATH"), ":")
 }
 
 func ifContains(slice []string, word string) bool {
