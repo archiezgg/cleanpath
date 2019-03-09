@@ -35,3 +35,6 @@ As you can see `cleanpath -p` returns the "cleaned" path to standard output, sou
 
 ## Saving the changes
 The above command will only clean your path for the time as long as your shell is running. To save the changes, save the `export PATH=$(cleanpath -p)` command to your configuration file which gets loaded everytime you run a shell (.bashrc, .zshrc, .profile etc. - whichever you use).
+
+# IMPORTANT
+In order to avoid bugs, **save the above command at the end of your config file**. Since `cleanpath` is working with the current PATH when it is ran, it's important to have all the PATH edited and setup in the configuration file **before** the cleaning.
