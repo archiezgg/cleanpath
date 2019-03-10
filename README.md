@@ -13,21 +13,21 @@ Download the source code, and in the directory run `go build -o bin/cleanpath`. 
 
 Just by simply calling `cleanpath` you get the help page, which is:
 
+```
+Welcome to cleanpath, a lightweight Go CLI application to show your duplicates in your PATH variable!
 
->Welcome to cleanpath, a lightweight Go CLI application to show your duplicates in your PATH variable!
+Usage: cleanpath [OPTIONS]
 
->Usage: cleanpath [OPTIONS]
-
->Options:
+Options:
 	
-  >-h,		Shows help page.
+  -h,		Shows help page.
 	
-  >-g,		Shows your current PATH.
+  -g,		Shows your current PATH.
 	
-  >-s,		Prints status about the number of duplicates and the duplicates itself.
+  -s,		Prints status about the number of duplicates and the duplicates itself.
 	
-  >-p,		Prints what would your clean path look like.
-
+  -p,		Prints what would your clean path look like.
+```
 ## Cleaning your PATH
 As you can see `cleanpath -p` returns the "cleaned" path to standard output, sou you can save it to your PATH by running 
 
@@ -37,4 +37,4 @@ As you can see `cleanpath -p` returns the "cleaned" path to standard output, sou
 The above command will only clean your path for the time as long as your shell is running. To save the changes, save the `export PATH=$(cleanpath -p)` command to your configuration file which gets loaded everytime you run a shell (.bashrc, .zshrc, .profile etc. - whichever you use).
 
 # IMPORTANT
-In order to avoid bugs, **save the above command at the end of your config file**. Since `cleanpath` is working with the current PATH when it is ran, it's important to have all the PATH edited and setup in the configuration file **before** the cleaning.
+In order to avoid bugs, **save the above command at the _end of your config file_**. Since `cleanpath` is working with the current PATH when it is ran, it's important to have all the PATH edited and setup in the configuration file **before** the cleaning.
